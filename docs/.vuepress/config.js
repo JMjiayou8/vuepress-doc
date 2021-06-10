@@ -19,6 +19,7 @@ module.exports = {
       '/note/':[],
       '/train/':[
         '',
+        'rule',
         'html',
         'css',
         'js',
