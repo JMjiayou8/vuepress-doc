@@ -5,6 +5,17 @@ tags:
   - 其它
 ---
 
+## 培训记录
+
+#### 2019/11/22-南京-线下
+
+参与者：韩峰、潘海龙、高培、张书华、刘涛、王慧君
+
+待完善问题列表：
+- css - 浮动问题
+- vue - 组件间通信 
+- async/await 语法
+
 ## 相关学习、参考链接
 
 | 主题| 相关链接|
@@ -14,14 +25,3 @@ tags:
 | vue 相关 | [vue.js](https://cn.vuejs.org/): 官网，熟悉基础语法<br>[vue-cli](https://cli.vuejs.org/zh/guide/cli-service.html):官方脚手架<br>[vue-router](https://router.vuejs.org/zh/):路由<br>[vuex](https://vuex.vuejs.org/zh/):状态管理<br>[element-ui](https://element.eleme.io/#/):pc 端 UI 框架<br>[vant-ui](https://youzan.github.io/vant/#/zh-CN/intro):h5UI 框架 |
 | 拓展     | [es6](http://es6.ruanyifeng.com/):熟悉基础语法<br>[webpack](https://www.webpackjs.com/):模块化打包工具<br>[axios](http://www.axios-js.com/zh-cn/docs/):数据请求<br>[scss](https://www.sass.hk/):CSS 扩展语言<br>|
 
-
-## 培训记录
-
-#### 2019/11/22-南京
-
-参与者：韩峰、潘海龙、高培、张书华、刘涛、王慧君
-
-待完善问题列表：
-- css - 浮动问题
-- vue - 组件间通信 
-- async/await 语法
