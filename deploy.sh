@@ -6,7 +6,7 @@ set -e
 # 将文档上传git
 git add -A
 git commit -m 'deploy'
-git push -f https://github.com/JMjiayou8/vuepress-doc.git master
+git push -f git@github.com/JMjiayou8/vuepress-doc.git master
 
 # 生成静态文件
 npm run build
