@@ -4,17 +4,18 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      // { text: '工作笔记', link: '/record/' },
+      { text: '工作笔记', link: '/record/' },
       // { text: '学习笔记', link: '/note/' },
       { text: '部门培训', link: '/train/' },
     ],
     sidebar:{
       '/record/':[
         '',
-        'asiainfo',
-        'sefon',
-        'yoho',
-        'auais'
+        'element-ui'
+        // 'asiainfo',
+        // 'sefon',
+        // 'yoho',
+        // 'auais'
       ],
       '/note/':[],
       '/train/':[

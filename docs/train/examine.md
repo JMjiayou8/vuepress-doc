@@ -10,7 +10,7 @@ tags:
 ### 技术沉淀
 
 - 通过组织培训、文档材料输出让部门工作中涉及的前端技术在团队中得到深化和沉淀。至少输出 `5` 份用于沉淀的技术文档，并定期更行。
-- [html](./html.md)、[css](./css.md)、[js](./js.md)、[es6](./es6.md)、[jquery](./jquery.md)、[vue](./vue-1.md)、[vue 实战](./vue-2.md)
+<!-- - [html](./html.md)、[css](./css.md)、[js](./js.md)、[es6](./es6.md)、[jquery](./jquery.md)、[vue](./vue-1.md)、[vue 实战](./vue-2.md) -->
 
 ### 技术创新
 
@@ -19,7 +19,8 @@ tags:
 
 - 至少`3` 个有效的产品、组件、工具创新思路，1 个落地实现。
 
-- [react](./react.md)、[vue3](./vue3.md)
+<!-- - [react](./react.md)、[vue3](./vue3.md) -->
+- [vue3](./vue3.md)
 
 ### 人员管理与培养
 - 至少组织` 3 `次技术与业务培训。完成为 3.5 分。
