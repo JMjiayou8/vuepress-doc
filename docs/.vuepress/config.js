@@ -4,32 +4,35 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '主页', link: '/' },
-      { text: '工作笔记', link: '/record/' },
-      // { text: '学习笔记', link: '/note/' },
-      { text: '部门培训', link: '/train/' },
+      // { text: '工作笔记', link: '/record/' },
+      { text: '学习笔记', link: '/note/' },
+      // { text: '部门培训', link: '/train/' },
     ],
     sidebar:{
-      '/record/':[
+      // '/record/':[
+      //   '',
+      //   'element-ui',
+      //   'asiainfo',
+      //   'sefon',
+      //   'yoho',
+      //   'auais'
+      // ],
+      '/note/':[
         '',
-        'element-ui'
-        // 'asiainfo',
-        // 'sefon',
-        // 'yoho',
-        // 'auais'
+        'react'
       ],
-      '/note/':[],
-      '/train/':[
-        '',
-        'rule',
-        'examine',
-        // 'html',
-        // 'css',
-        // 'js',
-        // 'jquery',
-        // 'es6',
-        // 'vue-1',
-        // 'vue-2'
-      ],
+      // '/train/':[
+      //   '',
+      //   'rule',
+      //   'examine',
+      //   // 'html',
+      //   // 'css',
+      //   // 'js',
+      //   // 'jquery',
+      //   // 'es6',
+      //   // 'vue-1',
+      //   // 'vue-2'
+      // ],
     }
   }
 }
