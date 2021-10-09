@@ -1,5 +1,5 @@
 ---
-title: js基础
+title: javascript
 date: 2019-11-07 10:37:37
 
 tags:
@@ -481,138 +481,13 @@ Object.prototype.toString.call(math) //"[object Math]"
 | new Boolean(false)|true|true
 
 
-
-## 浏览器对象
-
-Window 对象表示浏览器中打开的窗口。本篇结合日常使用频率，介绍常用属性和方法，更多[戳这里~](https://www.runoob.com/jsref/obj-window.html)
-
-### 浏览器尺寸
-
-1. Internet Explorer、Chrome、Firefox、Opera 以及 Safari
-
-- window.innerHeight - 浏览器窗口的内部高度(包括滚动条)
-- window.innerWidth - 浏览器窗口的内部宽度(包括滚动条)
-
-2. Internet Explorer 8、7、6、5
-
-- document.documentElement.clientHeight
-- document.documentElement.clientWidth
-
-3. 其余
-- document.body.clientHeight
-- document.body.clientWidth
-
-实用的 JavaScript 方案（涵盖所有浏览器）
-
-```javascript
-var w =
-  window.innerWidth ||
-  document.documentElement.clientWidth ||
-  document.body.clientWidth
-
-var h =
-  window.innerHeight ||
-  document.documentElement.clientHeight ||
-  document.body.clientHeight
-```
-
-### 浏览器窗口操作
-
-- window.open() - 打开新窗口
-- window.close() - 关闭当前窗口
-- window.moveTo() - 移动当前窗口
-- window.resizeTo() - 调整当前窗口的尺寸
-
-### 浏览器 URL
-
-window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。
-
-- location.hostname 返回 web 主机的域名
-- location.pathname 返回当前页面的路径和文件名
-- location.port 返回 web 主机的端口 （80 或 443）
-- location.protocol 返回所使用的 web 协议（http: 或 https:）
-
-### 浏览器历史
-
-- history.back() - 与在浏览器点击后退按钮相同
-- history.forward() - 与在浏览器中点击向前按钮相同
-
-### 浏览器存储对象
-
-localStorage
-
-用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去删除。属性是只读的。localStorage 只支持 string 类型的存储。
-
-```javascript
-localStorage.setItem('key', 'value')
-var lastname = localStorage.getItem('key')
-localStorage.removeItem('key')
-localStorage.clear()
-```
-
-sessionStorage
-
-用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据。
-
-```javascript
-sessionStorage.setItem('key', 'value')
-var lastname = sessionStorage.getItem('key')
-sessionStorage.removeItem('key')
-sessionStorage.clear()
-```
-
-### 浏览器弹框
-
-警告框
-
-```javascript
-alert('你好，我是一个警告框！')
-```
-
-确认框
-
-```javascript
-window.confirm('你好，我是一个确认框！')
-```
-
-提示框
-
-```javascript
-var text = window.prompt('你好，我是一个确认框！', '默认值')
-```
-
-### 计时
-
-setInterval() - 间隔指定的毫秒数不停地执行指定的代码。
-
-```javascript
-//每三秒弹出 "hello" ：
-var t = setInterval(function() {
-  alert('Hello')
-}, 3000)
-//清除定时器
-clearInterval(t)
-```
-
-setTimeout() - 在指定的毫秒数后执行指定代码。
-
-```javascript
-//三秒后弹出 "hello" ：
-var t = setTimeout(function() {
-  alert('Hello')
-}, 3000)
-//清除定时器
-clearTimeout(t)
-```
-
-
 ## DOM
 
 ### 基础
 
 DOM (Document Object Model):文档对象模型，是 HTML 和 XML 文档的编程接口。HTML DOM 定义了访问和操作 HTML 文档的标准方法。DOM 以树结构表达 HTML 文档。所有 DOM 节点对象都继承了 Node 接口，拥有一些共同的属性和方法。这是 DOM 操作的基础。
 
-![img](/images/htmltree.gif?width=100)
+<!-- ![img](/images/htmltree.gif?width=100) -->
 
 
 ### 节点
@@ -689,10 +564,33 @@ result(); // 999
 闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在。
 
 
-## 日常开发技巧，调试
-
-1. 使用 `window.alert()` 弹出警告框。
-2. 使用 `console.log()` 写入到浏览器的控制台。
-3. 使用`debugger`进行调试断点调试。
-
-简单的 js 直接在浏览器控制台运行，复杂一点的个人习惯新建 js 文件，再用 node 环境运行。
+## 思考✨
+> Javascript 的原型和继承
+- 如何理解 Javascript 中的“一切皆对象” 
+- 如何创建一个对象
+- proto 与 prototype 的区别
+> 对单线程 Javascript 的理解
+- 单线程来源
+- Web Workers 和 Service Workers 的理解
+> 异步事件机制
+- 为什么使用异步事件机制
+- 在实际使用中异步事件可能会导致什么问题 
+- 关于 setTimeout、setInterval 的时间精确性
+> 作用域与闭包
+- 请描述以下代码的执行输出内容（考察作用域）
+- 什么场景需要使用闭包
+- 闭包的缺陷
+> this 与执行上下文
+- 简单描述 this 在不同场景下的指向
+- apply/call/bind 的使用
+- 箭头函数与普通函数的区别
+> 对 EventLoop 的理解
+- 介绍浏览器的 EventLoop
+- 宏任务（MacroTask）和微任务（MicroTask）的区别 
+- setTimeout、Promise、async/await 在不同浏览器的执行顺序
+> ES6/ES7相关的语法
+- 手写代码实现Promise
+- 为什么要使用async、await
+- 怎样让ES6/ES7代码可以跑在各个浏览器中（考察Babel与polyfill）
+- 介绍下Set和Map数据结构
+- Javascript是怎么实现let和const作用域的
