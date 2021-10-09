@@ -20,6 +20,6 @@ git add -A
 git commit -m 'deploy'
 
 # 发布到 https://<USERNAME>.github.io
-git push -f git@github.com:JMjiayou8/JMjiayou8.github.io.git master
+git push -f https://github.com/JMjiayou8/JMjiayou8.github.io.git master
 
 cd -
