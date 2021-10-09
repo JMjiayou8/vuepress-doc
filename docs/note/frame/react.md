@@ -19,7 +19,7 @@ npx create-react-app my-react-app
 cd my-react-app
 npm start
 ```
-
+## 基础
 > 组件
 
 - function 组件:无状态组件
@@ -158,3 +158,52 @@ const [todos, setTodos] = useState([{ text: 'Learn Hooks' }])
 > useEffect
 
 - 跟 class 组件中的 componentDidMount、componentDidUpdate 和 componentWillUnmount 具有相同的用途，只不过被合并成了一个 API。
+
+
+
+## `React`组件间如何通讯
+```
+父组件 => 子组件：
+Props
+Instance Methods
+子组件 => 父组件：
+Callback Functions
+Event Bubbling
+兄弟组件之间：
+Parent Component
+不太相关的组件之间：
+Context
+Portals
+Global Variables
+Observer Pattern
+Redux等
+
+```
+- `JSX`本质是什么
+- `context`是什么，有何用途
+- `shouldComponentUpdate`的用途
+- 描述`redux`单向数据流
+- `setState`是同步还是异步？
+
+
+## 应用
+
+- 基于 React 设计一个 todoList (关注点：组件结构，redux state 数据结构)
+
+- react-函数组件和类组件的区别
+```
+两者最明显的不同就是在语法上，函数组件是一个纯函数，它接收一个props对象返回一个react元素。而类组件需要去继承React.Component并且创建render函数返回react元素，这将会要更多的代码，虽然它们实现的效果相同。
+
+因为函数组件是一个纯函数，你不能在组件中使用setState()，这也是为什么把函数组件称作为无状态组件。
+
+
+你不能在函数组件中使用生命周期钩子，原因和不能使用state一样，所有的生命周期钩子都来自于继承的React.Component中。
+
+在react16.8版本中添加了hooks，使得我们可以在函数组件中使用useState钩子去管理state，使用useEffect钩子去使用生命周期函数。因此，2、3两点就不是它们的区别点
+```
+
+- 纯函数要满足以下三点：
+
+1. 相同输入总是会返回相同的输出。
+2. 不产生副作用。
+3. 不依赖于外部状态。

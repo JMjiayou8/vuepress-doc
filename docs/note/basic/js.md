@@ -543,6 +543,14 @@ var elem=document.getElementById('box');
 | 绑定事件 | functin clickHandle(){}<br>elem.onclick=clickHandle;<br>elem.addEventListener("click",clickHandle,false); | $('#box','click',clickHandle) |
 
 ## 高阶
+### 高阶函数
+1. 接收一个函数或者多个函数作为参数的函数,如js中自带的map some every filter reduc
+2. 函数执行返回一个函数，如bind
+js自带的高阶函数栗子
+
+函数柯里化
+利用闭包保存的作用，把一些信息预先存储起来，[预处理]，供其下级上下文中后期使用。我们把这种预先存储/预先处理的机制称之为 ------函数柯里化
+
 
 ### 闭包
 JavaScript 有两种作用域：全局作用域和函数作用域。函数内部可以直接读取全局变量。但是，函数外部无法读取函数内部声明的变量。
@@ -583,6 +591,22 @@ result(); // 999
 > this 与执行上下文
 - 简单描述 this 在不同场景下的指向
 - apply/call/bind 的使用
+```
+this 总是指向函数的直接调用者
+如果有 new 关键字，this 指向 new 出来的实例对象
+在事件中，this 指向触发这个事件的对象
+IE 下 attachEvent 中的 this 总是指向全局对象 Window
+箭头函数中，函数体内的this对象，就是定义时所在作用域的对象，而不是使用时所在的作用域的对象。
+```
+```
+call、apply和bind是Function对象自带的三个方法，都是为了改变函数体内部 this 的指向。
+apply 、 call 、bind 三者第一个参数都是 this 要指向的对象，也就是想指定的上下文；
+apply 、 call 、bind 三者都可以利用后续参数传参；
+bind 是返回对应 函数，便于稍后调用；apply 、call 则是立即调用 。
+call 传入参数列表
+apply 传入数组
+```
+<!-- ![aaa](./img/this指向.jpeg) -->
 - 箭头函数与普通函数的区别
 > 对 EventLoop 的理解
 - 介绍浏览器的 EventLoop
@@ -590,6 +614,17 @@ result(); // 999
 - setTimeout、Promise、async/await 在不同浏览器的执行顺序
 > ES6/ES7相关的语法
 - 手写代码实现Promise
+```
+- Promise的初始状态是pending
+- 执行了resolve，Promise状态会变成fulfilled
+- 执行了reject，Promise状态会变成rejected
+- Promise只以第一次为准，第一次成功就永久为fulfilled，第一次失败就永远状态为rejected
+- Promise中有throw的话，就相当于执行了reject
+Promise有三种状态：
+- pending：等待中，是初始状态
+- fulfilled：成功状态
+- rejected：失败状态
+```
 - 为什么要使用async、await
 - 怎样让ES6/ES7代码可以跑在各个浏览器中（考察Babel与polyfill）
 - 介绍下Set和Map数据结构

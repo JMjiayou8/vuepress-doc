@@ -41,6 +41,7 @@ module.exports = {
             './frame/element-ui',
             './frame/react',
             './frame/antd',
+            './frame/webpack',
             './frame/q',
             './frame/project'
           ]

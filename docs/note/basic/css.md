@@ -174,7 +174,7 @@ p{
 1. `块元素`就是独占一行，元素前后都有换行符，常见有div,p,h1-h6等。语法为：`display:block`;
 2. `内联元素`就是只有必要的宽度，不会强制换行，常见有span,a等。语法为：`display:inline`;
 3. `行内块元素`,内联元素设置宽高无效，一般处理方式是设为行内块元素；块元素想不换行，也可以设为行内块元素。语法为：`display:inline-block`;
-
+- `inline-block`元素的特点是宽高如果不设置会根据内部元素撑起大小设置，而`block`元素则不然，block元素的高有内部元素撑起，宽默认100%；
 > 浮动 [float](https://www.runoob.com/cssref/pr-class-float.html)
 
 使元素向左或向右移动，其周围的元素也会重新排列。
@@ -286,17 +286,137 @@ ul,ol{
 ```
 
 ## 思考✨
-> 页面布局原理
-- 我们常说的`盒模型`是指什么
-- 什么是文档流
-- 浮动元素为什么无法撑开父元素？如何解决
-> 常见页面布局的技巧
-- 元素`居中`布局的几种实现方式
-- 对`Flex`布局、`Grid`布局方式的理解和使用
-> 浏览器的布局过程
-- 浏览器在进行页面布局过程中会做些什么
-- 重绘和重排会导致什么问题
+> 我们常说的`盒模型`是指什么
+- 
+> 什么是文档流
+- 
+> 对 BFC 规范(块级格式化上下文：block formatting context)的理解？
+
+BFC 规定了内部的 Block Box 如何布局。
+
+1. 定位方案：
+
+- 内部的 Box 会在垂直方向上一个接一个放置。
+- Box 垂直方向的距离由 margin 决定，属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠。
+- 每个元素的 margin box 的左边，与包含块 border box 的左边相接触。
+- BFC 的区域不会与 float box 重叠。
+- BFC 是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。
+- 计算 BFC 的高度时，浮动元素也会参与计算。
+
+2. 满足下列条件之一就可触发 BFC
+
+- 根元素，即 html
+- float 的值不为 none（默认）
+- overflow 的值不为 visible（默认）
+- display 的值为 inline-block、table-cell、table-caption
+- position 的值为 absolute 或 fixed
+> 浮动元素为什么无法撑开父元素？如何解决
+
+1. 浮动带来的问题：
+
+- 父元素的高度无法被撑开，影响与父元素同级的元素
+- 与浮动元素同级的非浮动元素（内联元素）会跟随其后
+- 若非第一个元素浮动，则该元素之前的元素也需要浮动，否则会影响页面显示的结构。
+
+2. 清除浮动的方式：
+
+- 父级 div 定义 height
+- 最后一个浮动元素后加空 div 标签 并添加样式 clear:both。
+- 包含浮动元素的父标签添加样式 overflow 为 hidden 或 auto。
+- 父级 div 定义 zoom
+
+3. 设置元素浮动后，该元素的 display 值是什么?:自动变成 display:block
+
+> 元素`居中`布局的几种实现方式
+```
+1. 水平居中
+行内元素: text-align: center
+块级元素: margin: 0 auto
+position:absolute +left:50%+ transform:translateX(-50%)
+display:flex + justify-content: center
+
+2. 垂直居中
+设置line-height 等于height
+position：absolute +top:50%+ transform:translateY(-50%)
+display:flex + align-items: center
+display:table+display:table-cell + vertical-align: middle;
+```
+> 对`Flex`布局、`Grid`布局方式的理解和使用
+> 浏览器在进行页面布局过程中会做些什么
+> 重绘和重排会导致什么问题
+
+1. 重绘：重绘是一个元素外观的改变所触发的浏览器行为，例如改变 outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，所以并不一定伴随重排。
+
+```
+* color							* background								* outline-color         * border-style					* background-image							* outline         * border-radius					* background-position						* outline-style         * visibility					* background-repeat							* outline-width         * text-decoration				* background-size							* box-shadow
+```
+
+2. 回流：渲染对象在创建完成并添加到渲染树时，并不包含位置和大小信息。计算这些值的过程称为布局或重排，或回流
+
+```
+* width  * top * text-align  * heigh  * bottom  * overflow-y         * padding					* left									* font-weight         * margin					* right									* overflow         * display					* position								* font-family         * border-width				* float									* line-height         * border					* clear									* vertival-align         * min-height														* white-space
+
+```
+
+3. "重绘"不一定需要"重排"，比如改变某个网页元素的颜色，就只会触发"重绘"，不会触发"重排"，因为布局没有改变。
+4. "重排"大多数情况下会导致"重绘"，比如改变一个网页元素的位置，就会同时触发"重排"和"重绘"，因为布局改变了。
+
+5.  常见触发重绘回流的行为
+- 当你增加、删除、修改 DOM 结点时，会导致 Reflow , Repaint。
+- 当你移动 DOM 的位置
+- 当你修改 CSS 样式的时候。
+- 当你Resize窗口的时候（移动端没有这个问题，因为移动端的缩放没有影响布局视口)
+- 当你修改网页的默认字体时。
+- 获取DOM的height或者width时，例如clientWidth、clientHeight、clientTop、clientLeft、offsetWidth、offsetHeight、offsetTop、offsetLeft、scrollWidth、scrollHeight、scrollTop、scrollLeft、scrollIntoView()、scrollIntoViewIfNeeded()、getComputedStyle()、getBoundingClientRect()、scrollTo()
+6. 针对重绘回流的优化方案
+
+- 元素位置移动变换时尽量使用CSS3的transform来代替top，left等操作
+- 不要使用table布局
+- 将多次改变样式属性的操作合并成一次操作
+- 利用文档素碎片（documentFragment），vue使用了该方式提升性能
+- 动画实现过程中，启用GPU硬件加速：transform:tranlateZ(0)
+- 为动画元素新建图层，提高动画元素的z-index
+- 编写动画时，尽量使用requestAnimationFrame
 - CSS动画和Javascript动画相比，有什么优缺点
+
+> CSS 优化、提高性能的方法有哪些？
+- 避免过度约束
+- 避免后代选择符
+- 避免链式选择符
+- 使用紧凑的语法
+- 避免不必要的命名空间
+- 避免不必要的重复
+- 最好使用表示语义的名字。一个好的类名应该是描述他是什么而不是像什么
+- 避免！important，可以选择其他选择器
+- 尽可能的精简规则，你可以合并不同类里的重复规则
+> display:inline-block 会显示间隙？
+
+1. 是换行符引起的间隔问题，间隙为 4px。
+
+- 去掉换行符；
+- 对父元素添加 font-size:0，将字体大小设置为 0，换行符也会为 0px，从而消除间隙，再为 inline-block 元素设置我们需要的字体大小；
+- 将 inline-block 的 margin-right/left 设置为 -4px； -将父元素的 letter-spacing 或 word-spacing 设置为 -4px，这两个属性会增加或减少字符间隔。word-spacing 对中文无效
+
+2. inline-block 还有两个问题：即不同高度的两个 inline-block 顶部不对齐，以及 inline-block 底部多出几像素（多出空白）。
+   解决方法是为 inline-block 元素设置 vertical-align:top。
+
+> 为什么 CSS 解析顺序从右到左
+
+- 如果是从左到右的话：
+
+1. 第一次从爷节点 -> 子节点 -> 孙节点 1
+2. 第一次从爷节点 -> 子节点 -> 孙节点 2
+3. 第一次从爷节点 -> 子节点 -> 孙节点 3
+
+如果三次都匹配不到的话，那至少也得走三次：爷节点 -> 子节点 -> 孙节点，这就做了很多无用功啊。
+
+- 如果是从右到左的话：
+
+1. 第一次从孙节点 1，找不到，停止
+2. 第一次从孙节点 2，找不到，停止
+3. 第一次从孙节点 3，找不到，停止
+这样的话，尽早发现找不到，尽早停止，可以少了很多无用功。
+
 
 
 

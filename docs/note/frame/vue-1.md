@@ -4,7 +4,7 @@ date: 2019-11-14 09:16:37
 tags:
   - vue
 ---
-
+## 基础
 ### 背景
 
 在传统 web 开发中，我们搭建项目都以 html 结构为基础，需要操作 dom 元素然后通过 jquery 或者 js来添加各种交互功能，一旦项目改动或者项目工程较大，代码的修改将是复杂繁琐的。
@@ -66,7 +66,10 @@ var app = new Vue({
 ```
 
 ### 指令
-
+v-html
+```
+v-html:有xss风险；覆盖子组件
+```
 v-bind:绑定属性，可以用于响应式地更新 HTML 特性。缩写为`:`
 
 ```html
@@ -85,6 +88,9 @@ var app = new Vue({
 ```
 
 v-on:绑定函数,缩写为`@`
+1. event 参数，自定义参数
+2. 事件修饰符，按键修饰符
+3. 观察事件被绑定到哪里
 
 ```html
 <button v-on:click="clickHandle">v-on绑定事件</button>
@@ -151,6 +157,9 @@ v-if\v-else-if\v-else:条件判断
 ```
 
 v-for:遍历渲染
+1. 遍历对象(也可以 v-for)
+2. key 的重要性
+3. v-for 和 v-if 最好不要一起使用
 ```html
 <div v-for="item in items" :key="item.id">
   {{ item.text }}
@@ -180,6 +189,10 @@ data(){
 }
 
 ```
+### computed 和 watch
+
+1. computed 有缓存，data 不变不会重新计算
+2. watch 如何深度监听
 
 ### 生命周期
 
@@ -218,5 +231,156 @@ methods: {
   }
 }
 ```
+## 高级特性
+
+1. 自定义 v-model
+
+- 常用 vue 颜色选择器
+
+```js
+<base-input v-model="valText"/>
+
+//base-input.vue
+Vue.component('base-input', {
+  template: '<input :value="val" @input="$emit('change', $event.target.value)  type="text">',
+  props: ["val"],
+  model:{
+    prop:'val',
+    event:'change'
+  }
+});
+
+//v-bind只能实现单向绑定
+//v-model（v-bind+触发的input事件）实现双向绑定
+```
+
+2. $nextTick
+
+```
+异步渲染
+data改变之后，dom不会立刻渲染
+$nextTick会在dom渲染之后被触发，以获取最新的dom节点
+页面渲染时会将data的修改做整合，多次data修改只会渲染一次
+
+```
+
+3. slot 插槽
+
+- 基本使用
+  子元素取代插槽位置
+- 作用域插槽
+
+```html
+<!-- 父组件 -->
+<scopeSlot>
+  <template v-slot="slotProps"> {{slotProps.slotData.yyy}} </template>
+</scopeSlot>
+
+<!--scopeSlot  -->
+<div>
+  <slot :slotData="xxx"> {{xxx.yyy}} </slot>
+</div>
+```
+
+- 具名插槽
+
+```html
+<div>
+  <slot name="head"></slot>
+  <slot name="foot"></slot>
+</div>
+
+<div>
+  <template v-slot:head></template>
+  <template v-slot:foot></template>
+</div>
+```
+
+4. 动态异步组件
+
+- 语法：`<component :is="component-name" />`
+- 根据数据渲染不同组件
+- 异步组件
+
+```js
+// import 按需加载
+components: {
+  FormDemo: () => import('../FormDemo.vue')
+}
+```
+5. keep-alive
+- 缓存组件
+- 频繁操作，不需要重复渲染
+- Vue常见性能优化
+6. mixin
+- 抽离公共逻辑
+- 变量来源不明确;变量冲突风险；多对多，复杂度高
+
+## 思考✨
+##### 组件中的`data`为什么是一个函数
+- 一个组件被复用多次的话，也就会创建多个实例。本质上，这些实例用的都是同一个构造函数。如果data是对象的话，对象属于引用类型，会影响到所有的实例。所以为了保证组件不同的实例之间data不冲突，data必须是一个函数。
+
+##### `v-if` 和 `v-show`的区别
+##### 为何 `v-for` 中用 `key`
+##### 描述`Vue`组件的生命周期(有父子组件的情况)
+```js
+<template>
+  <Index>
+    <List/>
+  </Index>
+</template>
+// 渲染顺序
+`index created
+ list created
+ list mounted
+ index mounted`
+
+// 更新顺序
+`index before update
+ list before update
+ list updated
+ index updated`
+
+// 卸载顺序
+
+组件的调用顺序都是先父后子,渲染完成的顺序是先子后父。
+
+组件的销毁操作是先父后子，销毁完成的顺序是先子后父。
+
+加载渲染过程
+父beforeCreate->父created->父beforeMount->子beforeCreate->子created->子beforeMount- >子mounted->父mounted
+
+子组件更新过程
+父beforeUpdate->子beforeUpdate->子updated->父updated
+
+父组件更新过程
+父 beforeUpdate -> 父 updated
+
+销毁过程
+父beforeDestroy->子beforeDestroy->子destroyed->父destroyed
+```
+##### `Vue`组件间如何通讯
+1. props 和$emit：父子组件通讯
+2. 自定义事件：非父子组件
+
+```
+使用 $on(eventName) 监听事件
+使用 $emit(eventName) 触发事件
+
+// event-bus.js
+import Vue from 'vue'
+export const EventBus = new Vue()
+
+// main.js
+Vue.prototype.$EventBus = new Vue()
+
+beforeDestory中解绑
+EventBus.$off
+```
+##### 描述组件渲染和更新的过程
+##### 双向绑定`v-model`的实现原理
+
+
+##### 基于 Vue 设计一个购物车 (关注点：组件结构，vuex state 数据结构)
 
 
