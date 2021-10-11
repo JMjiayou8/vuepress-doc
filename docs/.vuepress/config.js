@@ -6,7 +6,8 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: '学习笔记', link: '/note/' },
       { text: '工作笔记', link: '/record/' },
-      { text: '部门培训', link: '/train/' },
+      // { text: '部门培训', link: '/train/' },
+      { text: '资源', link: '/resource/' },
     ],
     sidebar:{
       '/record/':[

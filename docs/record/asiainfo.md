@@ -1,23 +1,43 @@
 ---
-title: 亚信
+title: 亚信科技有限公司
 date: 2019-11-14 09:16:37
 tags:
   - node
 ---
-## 数字化运营、门户
+## 概览
+- 时间：2017.03—
+- 部门：CUC BSS研发部
+- 岗位：web前端
+## 项目
+### 数字化运营、门户
 - 时间:2021/07-至今
-- 开发框架：React
+- 技术栈：React
 
-## 江苏划小
+### 江苏划小
 - 时间：2021/04-2021/07
-- 开发框架：Vue、[若依](https://gitee.com/y_project/RuoYi-Vue)
+- 技术栈：Vue、[若依](https://gitee.com/y_project/RuoYi-Vue)
 
-## IBPM
+### IBPM
 - 时间：2021/02-2021/04
-- 开发框架：Vue、[mxGraph](http://jgraph.github.io/mxgraph/)
+- 技术栈：Vue、[mxGraph](http://jgraph.github.io/mxgraph/)
 
 
-## 沃云厅
+### 沃云厅
 - 时间：2020/03-2021/07
-- 开发框架：Vue
+- 技术栈：Vue
+
+### 其它
+1. CB2.0产商品+MT报⽂系统
+- 技术：react
+- 根据需求原型进⾏⻚⾯开发；编写react业务组件；和后端对接联调接⼝数据。
+2. 新零售资源中⼼、订单中⼼、产商品中⼼
+- 技术：easyui+layui
+- 原有系统的⻛格升级,样式改造；新需求的静态⻚⾯开发。
+3. 部⻔管理系统整合重构
+- 技术：vue、element-ui等。
+- 管理系统框架,根据后台数据动态配置⼦系统及路由；报⽂转换系统重构；业务流程管理,mxGraph实现流程
+图绘制；任务管理平台重构。
+4. 其余零碎需求
+- 技术：vue、echarts、nodejs、layui等。
+- ⼤屏展示⻚、竞标会展demo等。
 

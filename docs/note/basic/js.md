@@ -6,10 +6,6 @@ tags:
   - js
 ---
 
-着重介绍 js 基础内容
-
-<!--more-->
-
 ## 基础
 
 `JavaScript` 是 Web 的编程语言。
@@ -19,12 +15,32 @@ tags:
 2. 把脚本保存到外部文件中。外部文件通常包含被多个网页使用的代码。文件扩展名是 .js。在 `script` 标签的 "src" 属性中设置该 .js 文件
 <i class="tips">Tips:</i>浏览器加载html文件时是一边下载html一边解析，发现`script`元素，就暂停解析。js引擎执行完毕再恢复往下解析 HTML 网页。所以一般情况下script标签放到html页面底部
 
+### var
 JavaScript 使用关键字 `var` 来定义变量， 使用等号来为变量赋值：
 
 ```javascript
 var num = 1
 var text = 'text'
 ```
+- 变量的声明会提升，变量的初始化不会提升
+
+
+<span style="background:yellow;">**思考题</span>
+```js
+//以下代码执行后，控制台的输出是??
+var a = 10;
+function a(){}
+console.log(typeof a)
+```
+::: details
+```js
+//函数提升优先级高于变量提升，所以代码等价于
+function a(){}
+var a；
+a = 10;
+console.log(typeof a)
+```
+:::
 
 ### 操作符
 
